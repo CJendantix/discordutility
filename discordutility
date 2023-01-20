@@ -40,16 +40,19 @@ update_discord () {
 if [ "$1" == "install" ]; then
     install_discord
     echo "Discord is now installed"
+    exit
 fi
 
 if [ "$1" == "update" ]; then
     update_discord
     echo "Discord is now updated"
+    exit
 fi
 
 if [ "$1" == "uninstall" ]; then
     remove_discord
     echo "Discord is now removed"
+    exit
 fi
 
 if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
@@ -57,4 +60,7 @@ if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
     echo "install         Install Discord"
     echo "uninstall       Remove Discord    (Only if installed with this utility)"
     echo "update          Update Discord    (Only if installed with this utility)"
+    exit
 fi
+
+echo "discordutility: try 'discordutility --help' for more information"
