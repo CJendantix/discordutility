@@ -8,14 +8,14 @@ download_discord () {
 install_discord () {
     download_discord
     sudo tar -xvzf /opt/temp/discord.tar.gz -C /opt
-    sudo ln -sf /opt/Discord/Discord /usr/bin/Discord
+    sudo ln -sf /opt/Discord/Discord /usr/bin/discord
     cat << EOF | sudo tee /usr/share/applications/discord.desktop
     [Desktop Entry]
     Name=Discord
     StartupWMClass=discord
     Comment=All-in-one voice and text chat for gamers that's free, secure, and works on both your desktop and phone.
     GenericName=Internet Messenger
-    Exec=/usr/bin/Discord
+    Exec=/usr/bin/discord
     Icon=/opt/Discord/discord.png
     Type=Application
     Categories=Network;InstantMessaging;
@@ -25,13 +25,16 @@ EOF
 }
 
 remove_discord () {
+    rm -r ~/.config/discord
     sudo rm -rf /opt/Discord
     sudo rm /usr/bin/Discord
     sudo rm /usr/share/applications/discord.desktop
 }
 
 update_discord () {
-    remove_discord
+    sudo rm -rf /opt/Discord
+    sudo rm /usr/bin/Discord
+    sudo rm /usr/share/applications/discord.desktop
     install_discord
 }
 
